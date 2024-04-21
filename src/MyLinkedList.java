@@ -1,12 +1,49 @@
 public class MyLinkedList<T> implements MyList<T> {
+    private MyNode<T> head;
+    private MyNode<T> tail;
+    private int size;
+
+    private class MyNode<T> {
+        T data;
+        MyNode<T> next;
+
+        MyNode(T data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
     @Override
     public void add(T item) {
+        MyNode<T> newNode = new MyNode<>(item);
 
+        if (head == null) {
+            head = tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+        }
+
+        size++;
     }
 
     @Override
     public void add(int index, T item) {
+        MyNode<T> newNode = new MyNode<>(item);
 
+        if (head == null) {
+            head = newNode;
+        } else {
+            MyNode<T> curr = head;
+
+            while(curr.next != null) {
+                curr = curr.next;
+            }
+
+            curr.next = newNode;
+        }
+
+        size++;
     }
 
     @Override
@@ -16,7 +53,10 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void addFirst(T item) {
-
+        MyNode<T> newNode = new MyNode<>(item);
+        newNode.next = head;
+        head = newNode;
+        size++;
     }
 
     @Override
@@ -75,17 +115,17 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
-    public boolean exists(java.lang.Object object) {
+    public boolean exists(Object object) {
         return false;
     }
 
     @Override
-    public int lastIndexOf(java.lang.Object object) {
+    public int lastIndexOf(Object object) {
         return 0;
     }
 
     @Override
-    public int indexOf(java.lang.Object object) {
+    public int indexOf(Object object) {
         return 0;
     }
 }
