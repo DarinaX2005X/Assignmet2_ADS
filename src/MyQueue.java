@@ -13,9 +13,7 @@ public class MyQueue<T> {
         if (isEmpty()) {
             throw new IllegalStateException("Queue is empty");
         }
-        T item = list.getFirst();
-        list.removeFirst();
-        return item;
+        return list.removeFirst();
     }
 
     public T peek() {

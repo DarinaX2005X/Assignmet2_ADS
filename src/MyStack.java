@@ -13,9 +13,7 @@ public class MyStack<T> {
         if (isEmpty()) {
             throw new IllegalStateException("Stack is empty");
         }
-        T item = list.get(list.size() - 1);
-        list.remove(list.size() - 1);
-        return item;
+        return list.remove(list.size() - 1); // Corrected to return the popped item
     }
 
     public T peek() {

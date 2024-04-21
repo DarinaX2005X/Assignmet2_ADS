@@ -28,7 +28,7 @@ public class MyArrayList<T> implements MyList<T>, Iterable<T> {
         if (size == arr.length) {
             increaseCapacity();
         }
-        arr[size++] = arr;
+        arr[size++] = item;
     }
 
     @Override
@@ -96,9 +96,9 @@ public class MyArrayList<T> implements MyList<T>, Iterable<T> {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
         for (int i = index; i < size - 1; i++) {
-            arr[i] = arr[size - 1] = null;
-            size--;
+            arr[i] = arr[i + 1];
         }
+        arr[--size] = null;
     }
 
     @Override
