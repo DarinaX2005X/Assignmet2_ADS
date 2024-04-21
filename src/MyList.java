@@ -1,3 +1,6 @@
+import java.util.Comparator;
+import java.util.Iterator;
+
 public interface MyList<T>{
     void add(T item);
     void add(int index, T item);
@@ -10,7 +13,7 @@ public interface MyList<T>{
     void remove(int index);
     void removeFirst();
     void removeLast();
-    void sort();
+    void sort(Comparator<T> cmp);
     int indexOf (Object object);
     int lastIndexOf (Object object);
     boolean exists (Object object);
