@@ -1,6 +1,7 @@
+import java.util.Iterator;
 import java.util.Comparator;
 
-public class MyArrayList<T> implements MyList<T> {
+public class MyArrayList<T> implements MyList<T>, Iterable<T> {
     private Object[] arr;
 
     private int size;
@@ -168,5 +169,29 @@ public class MyArrayList<T> implements MyList<T> {
             }
         }
         return -1;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new MyArrayListIterator();
+    }
+
+    private class MyArrayListIterator implements Iterator<T>, MyArrayListIterator {
+        private int currentIndex;
+
+        public MyArrayListIterator() {
+            currentIndex = 0;
+        }
+
+        public boolean hasNext() {
+            return currentIndex < size;
+        }
+
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No more elements in the list");
+            }
+            return (T) arr[currentIndex++];
+        }
     }
 }

@@ -1,4 +1,6 @@
-public class MyLinkedList<T> implements MyList<T> {
+import java.util.Iterator;
+
+public class MyLinkedList<T> implements MyList<T>, Iterable<T> {
     private MyNode<T> head;
     private MyNode<T> tail;
     private int size;
@@ -265,5 +267,31 @@ public class MyLinkedList<T> implements MyList<T> {
             index++;
         }
         return -1;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new MyLinkedListIterator();
+    }
+
+    private class MyLinkedListIterator implements Iterator<T>, MyLinkedListIterator {
+        private MyNode<T> curr;
+
+        public MyLinkedListIterator() {
+            curr = head;
+        }
+
+        public boolean hasNext() {
+            return curr != null;
+        }
+
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No more elements in the list");
+            }
+            T data = curr.data;
+            curr = curr.next;
+            return data;
+        }
     }
 }
